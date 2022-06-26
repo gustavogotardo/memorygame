@@ -1,0 +1,36 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    background: #EEF9BF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#title {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    color: #75B79E;
+}
+
+#contentSpace {
+    width: 85%;
+    height: 70%;
+    display: flex;
+    background: lightblue;
+}
+
+.card {
+    width: 540px;
+    height: 63px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    color: #75B79E;    
+}
