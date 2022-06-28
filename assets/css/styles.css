@@ -18,19 +18,40 @@ body {
 }
 
 #contentSpace {
-    width: 85%;
+    width: 70%;
     height: 70%;
     display: flex;
-    background: lightblue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .card {
-    width: 540px;
-    height: 63px;
-    font-family: 'Roboto';
-    font-weight: 700;
-    font-size: 56px;
-    line-height: 66px;
-    letter-spacing: -0.004em;
-    color: #75B79E;    
+    width: 120px;
+    height: 150px;
+    background: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+}
+
+.back {
+    background-image: url(../media/img/front.png);
+}
+
+.front1 {
+    background-image: url(../media/img/front.png);
+}
+
+.front2 {
+    background-image: url(../media/img/front.png);
 }
