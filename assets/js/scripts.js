@@ -10,7 +10,12 @@ const cards = [
     deck = [],
     board;
 let numberOfCards,
-    cardHTML;
+    cardHTML,
+    cardFace,
+    firstCard,
+    secondCard,
+    rightPairs,
+    moves;
 
 function howManyCards() {
     do{
@@ -47,15 +52,30 @@ function boardGenerator() {
     }
 }
 
-function turnCard(){
-    
+function turnCard(clickedCard){
+    clickedCard.classList.toggle("turned");
+    moves++;
+    if (firstCard === undefined){
+        firstCard = clickedCard;
+    }
+    else {
+        secondCard=clickedCard;
+        if (firstCard.innerHTML === secondCard.innerHTML){
+            rightPairs++;
+            endGameCheck();
+        }
+        else {
+            setTimeout(unturnCards, 1000);
+        }
+
+    }
 }
 
-function unturnCard (){
-
+function unturnCards(){
+    document.querySelector
 }
 
-function reset (){
+function reset(){
 
 }
 
