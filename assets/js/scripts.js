@@ -7,8 +7,7 @@ const cards = [
     "s13",
     "sileight"
 ],
-    deck = [],
-    board;
+    deck = [];
 let numberOfCards,
     cardHTML,
     cardFace,
@@ -17,17 +16,16 @@ let numberOfCards,
     rightPairs,
     moves;
 
-function howManyCards() {
-    do{
-        numberOfCards = parseInt(prompt("How many cards you want to play with? (4 to 14)"));
-    }
-    while(numberOfCards < 4 || numberOfCards > 14 || !(numberOfCards%2 === 0) || isNaN(numberOfCards));
-    
+
+function gameStart() {
+    numberOfCards = document.getElementById("numberOfCards").value;
+    console.log(numberOfCards);
+    deckGenerator();
 }
 
 function deckGenerator() {
-    for (let i=0; i<2; i++;) {
-        for (let i=0; i<(numberOfCards/2); i++;) {
+    for (let i=0; i<2; i++) {
+        for (let i=0; i<(numberOfCards/2); i++) {
             deck.push(cards[i]);
         }
     }
@@ -36,9 +34,10 @@ function deckGenerator() {
 }
 
 function boardGenerator() {
-    board = document.querySelector(".contentSpace");
+    const board = document.querySelector(".contentSpace");
+    board.innerHTML = ``;
     for (let i = 0; i<deck.length; i++){
-        cardHTML = `
+        board.innerHTML += `
             <li class="card" onclick="turnCard(this)">
                 <div class="backFace">
                     <img src="./assets/media/img/initialDLogo.png">
@@ -48,7 +47,6 @@ function boardGenerator() {
                 </div>
             </li>
         `
-        board.innerHTML += cardHTML;
     }
 }
 
@@ -72,7 +70,8 @@ function turnCard(clickedCard){
 }
 
 function unturnCards(){
-    document.querySelector
+    firstCard.classList.remove("turned");
+    secondCard.classList.remove("turned");
 }
 
 function reset(){
@@ -86,6 +85,4 @@ function endGameCheck(){
 function timer(){
 
 }
-
-howManyCards();
 deckGenerator();

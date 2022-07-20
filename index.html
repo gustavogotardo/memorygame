@@ -11,8 +11,21 @@
 </head>
 <body>
     <div id="title">
-        MEMORY CARD GAME
+        INITIAL D MEMORY CARD GAME
     </div>
-    <ul class="contentSpace"></ul>
+    <ul class="contentSpace">
+        <p>How many cards you want to play with?</p>
+        <select id="numberOfCards" name="numberOfCards">
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="12">12</option>
+            <option value="14">14</option>
+        </select>
+        <button onclick="gameStart()">
+            <p>Enter</p>
+        </button>
+    </ul>
 </body>
 </html>
