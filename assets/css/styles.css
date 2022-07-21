@@ -43,17 +43,21 @@ button {
     align-items: center;
 }
 
-.img {
-    height: 50px;
-    width: 50px;
+img {
+    height: 100px;
+    width: 100px;
     background-size: cover;
 }
 
-.back {
+.unturned {
+
+}
+
+.backFace {
     
     
 }
 
-.front1 {
+.frontFace {
     
 }

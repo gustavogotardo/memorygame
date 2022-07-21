@@ -14,7 +14,9 @@ let numberOfCards,
     firstCard,
     secondCard,
     rightPairs,
-    moves;
+    moves,
+    timerCount = 0,
+    timer;
 
 
 function gameStart() {
@@ -54,6 +56,9 @@ function turnCard(clickedCard){
     clickedCard.classList.toggle("turned");
     moves++;
     if (firstCard === undefined){
+        if (timerCount === undefined){
+            timer = setInterval(startTimer, 1000);
+        }
         firstCard = clickedCard;
     }
     else {
@@ -65,7 +70,6 @@ function turnCard(clickedCard){
         else {
             setTimeout(unturnCards, 1000);
         }
-
     }
 }
 
@@ -75,14 +79,22 @@ function unturnCards(){
 }
 
 function reset(){
-
+    const cardsToReset = document.querySelectorAll(".turned");
+    cardsToReset.classList.remove("turned");
 }
 
 function endGameCheck(){
-
+    if (rightPairs === (numberOfCards/2)) {
+        stopTimer();
+        alert(`Game Over! You needed ${moves} moves and ${timerCount} seconds`);
+    }
 }
 
-function timer(){
-
+function startTimer(){
+    timerCount++;
+    document.getElementById("timer").innerHTML = 
 }
-deckGenerator();
+
+function stopTimer(){
+    clearInterval(timer);
+}
