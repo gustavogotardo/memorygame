@@ -13,10 +13,10 @@ const cards = [
 let numberOfCards,
     cardHTML,
     cardFace,
+    pairs = 0,
+    moves = 0,
     firstCard,
     secondCard,
-    rightPairs,
-    moves,
     timerTensCount = 00,
     timerSecondsCount = 00,
     timer;
@@ -56,48 +56,65 @@ function boardGenerator() {
 }
 
 function turnCard(clickedCard){
-    clickedCard.classList.toggle("turned");
-    clickedCard.getElementsByClassName("frontFace").style.transform = "rotateY(0deg)";
-    clickedCard.getElementsByClassName("backFace").style.transform = "rotateY(-180deg)";
 
-    turnedFront.
-    moves++;
-    if (firstCard === undefined){
-        if (timerTensCount === undefined){
+    console.log(firstCard);
+    console.log(secondCard);
+
+    if (!(clickedCard.classList.contains("frozen"))){
+        moves++;
+        console.log(moves);
+        if (timerTensCount === 0 & timerSecondsCount === 0){
             timer = setInterval(startTimer, 1000);
         }
-        firstCard = clickedCard;
-    }
-    else {
-        secondCard=clickedCard;
-        if (firstCard.innerHTML === secondCard.innerHTML){
-            rightPairs++;
-            endGameCheck();
+        clickedCard.querySelector(".frontFace").classList.add("turnFrontFace");
+        clickedCard.querySelector(".backFace").classList.add("turnBackFace");
+
+        if (firstCard === undefined){
+            firstCard = clickedCard;
+            console.log(firstCard);
         }
         else {
-            setTimeout(unturnCards, 1000);
+            secondCard = clickedCard;
+            console.log(secondCard);
+            checkForPairs();
         }
+    }
+}
+
+function checkForPairs(){
+    if (firstCard.innerHTML === secondCard.innerHTML){
+        pairs+=2;
+        console.log(pairs);
+        firstCard.classList.add("frozen");
+        secondCard.classList.add("frozen");
+        endGameCheck();
+        firstCard = undefined;
+        secondCard = undefined;
+    }
+    else {
+        setTimeout(unturnCards, 1000);
     }
 }
 
 function unturnCards(){
-    firstCard.classList.remove("turned");
-    firstCard.getElementsByClassName("frontFace").style.transform = "rotateY(180deg)";
-    firstCard.getElementsByClassName("backFace").style.transform = "rotateY(0deg)";
-    secondCard.classList.remove("turned");
-    secondCard.getElementsByClassName("frontFace").style.transform = "rotateY(180deg)";
-    secondCard.getElementsByClassName("backFace").style.transform = "rotateY(0deg)";
+    firstCard.querySelector(".frontFace").classList.remove("turnFrontFace");
+    firstCard.querySelector(".backFace").classList.remove("turnBackFace");
+    secondCard.querySelector(".frontFace").classList.remove("turnFrontFace");
+    secondCard.querySelector(".backFace").classList.remove("turnBackFace");
+    firstCard = undefined;
+    secondCard = undefined;
 }
 
 function reset(){
-    const cardsToReset = document.querySelectorAll(".turned");
-    cardsToReset.classList.remove("turned");
+    document.querySelectorAll("frozen").classList.remove("frozen");
+    document.querySelectorAll("face").classList.remove("turnFrontFace");
+    document.querySelectorAll("face").classList.remove("turnBackFace");
 }
 
 function endGameCheck(){
-    if (rightPairs === (numberOfCards/2)) {
+    if (pairs === numberOfCards) {
         stopTimer();
-        alert(`Game Over! You needed ${moves} moves and ${timerTensCount} seconds`);
+        alert(`Game Over! You needed ${moves} moves and ${timerSecondsCount}s and ${timerTensCount}tens`);
     }
 }
 

@@ -61,9 +61,8 @@ body {
 }
 
 .contentSpace {
-    width: 70%;
+    width: 85%;
     height: 70%;
-    display: flex;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -79,6 +78,7 @@ button {
 .card {
     width: 200px;
     height: 150px;
+    position: relative;
 }
 
 .face {
@@ -94,6 +94,7 @@ button {
     backface-visibility: hidden;
     transition: all .5s;
     transform-style: preserve-3d;
+    position: absolute;
 }
 
 img {
@@ -101,18 +102,14 @@ img {
     background-size: cover;
 }
 
-.backFace {
-
-}
-
 .frontFace {
-    transform: rotateY(180deg);
+    transform: rotateX(180deg);
 }
 
 .turnFrontFace {
-    transform: rotateY(0deg);
+    transform: rotateX(0deg);
 }
 
 .turnBackFace {
-    transform: rotateY(-180deg);
+    transform: rotateX(-180deg);
 }
