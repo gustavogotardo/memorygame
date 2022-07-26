@@ -10,7 +10,7 @@ const cards = [
     "evo3"
 ],
     deck = [];
-let numberOfCards,
+let numberOfCards = 0,
     cardHTML,
     cardFace,
     pairs = 0,
@@ -57,25 +57,21 @@ function boardGenerator() {
 
 function turnCard(clickedCard){
 
-    console.log(firstCard);
-    console.log(secondCard);
-
     if (!(clickedCard.classList.contains("frozen"))){
         moves++;
-        console.log(moves);
+        console.log(`${moves} moves`);
+        document.getElementById("moves").innerHTML = `${moves}`;
         if (timerTensCount === 0 & timerSecondsCount === 0){
-            timer = setInterval(startTimer, 1000);
+            timer = setInterval(startTimer, 10);
         }
         clickedCard.querySelector(".frontFace").classList.add("turnFrontFace");
         clickedCard.querySelector(".backFace").classList.add("turnBackFace");
 
         if (firstCard === undefined){
             firstCard = clickedCard;
-            console.log(firstCard);
         }
         else {
             secondCard = clickedCard;
-            console.log(secondCard);
             checkForPairs();
         }
     }
@@ -84,7 +80,6 @@ function turnCard(clickedCard){
 function checkForPairs(){
     if (firstCard.innerHTML === secondCard.innerHTML){
         pairs+=2;
-        console.log(pairs);
         firstCard.classList.add("frozen");
         secondCard.classList.add("frozen");
         endGameCheck();
@@ -112,9 +107,11 @@ function reset(){
 }
 
 function endGameCheck(){
-    if (pairs === numberOfCards) {
+    console.log(`${pairs} pairs`);
+    console.log(`${numberOfCards} cards`);
+    if (pairs == numberOfCards) {
         stopTimer();
-        alert(`Game Over! You needed ${moves} moves and ${timerSecondsCount}s and ${timerTensCount}tens`);
+        alert(`Game Over! You finished in ${moves} moves! You spent ${timerSecondsCount}s and ${timerTensCount}tens!`);
     }
 }
 
@@ -146,5 +143,6 @@ function startTimer(){
 
 
 function stopTimer(){
+    console.log(pairs);
     clearInterval(timer);
 }
