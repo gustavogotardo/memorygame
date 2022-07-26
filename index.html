@@ -11,9 +11,13 @@
 </head>
 <body>
     <div id="title">
-        INITIAL D MEMORY CARD GAME
+        <p class="logo">INITIAL <span class="red">D</span></p> <p>MEMORY CARD GAME</p>
     </div>
     <div id="timer">
+        <p><span id="seconds">00</span><span class="red">:</span><span id="tens">00</span></p>
+    </div>
+    <div id="moveCounter">
+        <p><span>MOVES </span><span class="red">: </span><span id="moves">0</span></p>
     </div>
     <ul class="contentSpace">
         <p>How many cards you want to play with?</p>
@@ -24,6 +28,8 @@
             <option value="10">10</option>
             <option value="12">12</option>
             <option value="14">14</option>
+            <option value="16">16</option>
+            <option value="18">18</option>
         </select>
         <button onclick="gameStart()">
             <p>Enter</p>

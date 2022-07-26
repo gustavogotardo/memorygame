@@ -1,11 +1,13 @@
 const cards = [
-    "ek9",
-    "evo3",
-    "fc3s",
+    "ae86",
     "fd3s",
-    "gc8",
+    "fc3s",
     "s13",
-    "sileight"
+    "eg6",
+    "gc8",
+    "sileight",
+    "ek9",
+    "evo3"
 ],
     deck = [];
 let numberOfCards,
@@ -15,7 +17,8 @@ let numberOfCards,
     secondCard,
     rightPairs,
     moves,
-    timerCount = 0,
+    timerTensCount = 00,
+    timerSecondsCount = 00,
     timer;
 
 
@@ -41,10 +44,10 @@ function boardGenerator() {
     for (let i = 0; i<deck.length; i++){
         board.innerHTML += `
             <li class="card" onclick="turnCard(this)">
-                <div class="backFace">
+                <div class="backFace face">
                     <img src="./assets/media/img/initialDLogo.png">
                 </div>
-                <div class="frontFace">
+                <div class="frontFace face">
                     <img src="./assets/media/img/${deck[i]}.png">
                 </div>
             </li>
@@ -54,9 +57,13 @@ function boardGenerator() {
 
 function turnCard(clickedCard){
     clickedCard.classList.toggle("turned");
+    clickedCard.getElementsByClassName("frontFace").style.transform = "rotateY(0deg)";
+    clickedCard.getElementsByClassName("backFace").style.transform = "rotateY(-180deg)";
+
+    turnedFront.
     moves++;
     if (firstCard === undefined){
-        if (timerCount === undefined){
+        if (timerTensCount === undefined){
             timer = setInterval(startTimer, 1000);
         }
         firstCard = clickedCard;
@@ -75,7 +82,11 @@ function turnCard(clickedCard){
 
 function unturnCards(){
     firstCard.classList.remove("turned");
+    firstCard.getElementsByClassName("frontFace").style.transform = "rotateY(180deg)";
+    firstCard.getElementsByClassName("backFace").style.transform = "rotateY(0deg)";
     secondCard.classList.remove("turned");
+    secondCard.getElementsByClassName("frontFace").style.transform = "rotateY(180deg)";
+    secondCard.getElementsByClassName("backFace").style.transform = "rotateY(0deg)";
 }
 
 function reset(){
@@ -86,14 +97,36 @@ function reset(){
 function endGameCheck(){
     if (rightPairs === (numberOfCards/2)) {
         stopTimer();
-        alert(`Game Over! You needed ${moves} moves and ${timerCount} seconds`);
+        alert(`Game Over! You needed ${moves} moves and ${timerTensCount} seconds`);
     }
 }
 
 function startTimer(){
-    timerCount++;
-    document.getElementById("timer").innerHTML = 
+    const tensHTML = document.getElementById("tens"),
+          secondsHTML = document.getElementById("seconds");
+    timerTensCount++;
+
+    if (timerTensCount <= 9) {
+        tensHTML.innerHTML = "0" + timerTensCount;
+    }
+
+    if (timerTensCount > 9) {
+        tensHTML.innerHTML = timerTensCount;
+    }
+
+    if (timerTensCount > 99) {
+        timerSecondsCount++;
+        secondsHTML.innerHTML = "0" + timerSecondsCount;
+        timerTensCount = 0;
+        tensHTML.innerHTML = "0" + 0;
+    }
+
+    if (timerSecondsCount > 9) {
+        secondsHTML.innerHTML = timerSecondsCount;
+    }
 }
+
+
 
 function stopTimer(){
     clearInterval(timer);
