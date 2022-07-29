@@ -57,7 +57,7 @@ function boardGenerator() {
 
 function turnCard(clickedCard){
 
-    if (!(clickedCard.classList.contains("frozen"))){
+    if (!(clickedCard.classList.contains("frozen")) & firstCard === undefined || secondCard === undefined){
         moves++;
         console.log(`${moves} moves`);
         document.getElementById("moves").innerHTML = `${moves}`;
